@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SimpleCalculator {
-    private JFrame frame;
+                //TODO : 왜 안쓰지?
     private JPanel panel;
     private JTextField textField;
     private CoreCalculator coreCalculator;
@@ -16,19 +16,10 @@ public class SimpleCalculator {
     private void run() {
         coreCalculator = new CoreCalculator();
 
-        frame = new JFrame();
+        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
 
-        initMenu();
-        initNumber();
-        initOperator();
-
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    private void initMenu() {
         textField = new JTextField(10);
         textField.setEditable(false);
         updateNumber(coreCalculator.getCurrentNumber());
@@ -39,6 +30,11 @@ public class SimpleCalculator {
         frame.add(panel);
         panel.setLayout(new GridLayout(4, 3));
 
+        initNumber();
+        initOperator();
+
+        frame.pack();
+        frame.setVisible(true);
     }
 
     private void initNumber() {

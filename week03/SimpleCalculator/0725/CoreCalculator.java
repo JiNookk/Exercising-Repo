@@ -19,8 +19,6 @@ public class CoreCalculator {
             case "/" -> accumulator /= currentNumber;
             case "reset" -> accumulator = 0;
         }
-
-
         updateOperator(operator);
         currentNumber = 0;
     }
