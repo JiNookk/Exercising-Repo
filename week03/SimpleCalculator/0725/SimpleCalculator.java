@@ -3,11 +3,10 @@ import java.awt.*;
 
 public class SimpleCalculator {
     private JFrame frame;
-    private long currentNumber = 0;
-    private JTextField textField;
     private JPanel panel;
-    private long accumulator = 0;
-    private String currentOperator = "";
+    private JTextField textField;
+    private CoreCalculator coreCalculator;
+
 
     public static void main(String[] args) {
         SimpleCalculator application = new SimpleCalculator();
@@ -15,6 +14,8 @@ public class SimpleCalculator {
     }
 
     private void run() {
+        coreCalculator = new CoreCalculator();
+
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
@@ -23,22 +24,20 @@ public class SimpleCalculator {
         initNumber();
         initOperator();
 
-
         frame.pack();
         frame.setVisible(true);
     }
 
     private void initMenu() {
         textField = new JTextField(10);
-        frame.add(textField, BorderLayout.PAGE_START);
         textField.setEditable(false);
-        showCurrentNumber();
+        updateNumber(coreCalculator.getCurrentNumber());
         textField.setHorizontalAlignment(JTextField.RIGHT);
+        frame.add(textField, BorderLayout.PAGE_START);
 
         panel = new JPanel();
         frame.add(panel);
         panel.setLayout(new GridLayout(4, 3));
-
 
     }
 
@@ -47,39 +46,25 @@ public class SimpleCalculator {
             int number = i % 10;
             JButton button = new JButton(Integer.toString(number));
             button.addActionListener(event -> {
-                currentNumber *= 10;
-                currentNumber += number;
-                showCurrentNumber();
+                coreCalculator.currentNumber(number);
+                updateNumber(coreCalculator.getCurrentNumber());
             });
             panel.add(button);
         }
     }
 
     private void initOperator() {
-        String[] operators = new String[]{"+", "-", "/", "*", "="};
-
-        for (String operator : operators) {
+        for (String operator : coreCalculator.OPERATORS) {
             JButton button = new JButton(operator);
             button.addActionListener(e -> {
-                switch (currentOperator) {
-                    case "" -> accumulator = currentNumber;
-                    case "+" -> accumulator += currentNumber;
-                    case "-" -> accumulator -= currentNumber;
-                    case "*" -> accumulator *= currentNumber;
-                    case "/" -> accumulator /= currentNumber;
-                    case "=" -> accumulator = accumulator;
-                }
-
-                currentOperator = operator;
-                textField.setText(Long.toString(accumulator));
-                currentNumber = 0;
-
+                coreCalculator.calculate(operator);
+                updateNumber(coreCalculator.getAccumulator());
             });
             panel.add(button);
         }
     }
 
-    private void showCurrentNumber() {
-        textField.setText(Long.toString(currentNumber));
+    public void updateNumber(long number) {
+        textField.setText(Long.toString(number));
     }
 }
