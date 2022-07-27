@@ -5,13 +5,13 @@ import java.util.List;
 public class TransactionsPanel extends JPanel {
     Account account;
 
-    TransactionsPanel(Account account) {
-        this.account = account;
-        this.setLayout(new GridLayout(1 + account.transactionsSize(), 1));
+    TransactionsPanel(Account account1, Account account2) {
+        this.account = account1;
+        this.setLayout(new GridLayout(1 + account1.transactionsSize(), 1));
 
         this.add(new JLabel("거래 내역"));
 
-        showTransactions(account);
+        showTransactions(account1);
     }
 
     public void showTransactions(Account account) {

@@ -2,10 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
-    private long amount = 100000;
-    private final String number = "302-1066-0044-51";
+    private long amount ;
+    private String number ;
     private List<String> transactions = new ArrayList<>();
     private List<String> transferAmount = new ArrayList<>();
+
+    Account(long amount, String number){
+        this.amount = amount;
+        this.number = number;
+    }
+
 
     public long getAmount() {
         return amount;
