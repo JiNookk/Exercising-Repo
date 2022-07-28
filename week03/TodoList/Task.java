@@ -54,9 +54,8 @@ public class Task {
         checkBox.setSelected(checks.get(index));
     }
 
-    public void removeList(String title) {
-        titles.remove(title);
-
-//        checks.remove(checks.get(index));
+    public void removeList() {
+        titles.remove(checks.get(index));
+        checks.remove(checks.get(index));
     }
 }
