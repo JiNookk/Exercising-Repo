@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class TodoList {
-
     private JFrame frame;
     private JPanel contentPanel;
     private Task task;
@@ -55,18 +53,23 @@ public class TodoList {
         button.addActionListener(e -> {
             String title = textField.getText();
 
+            textField.setText("");
+
             boolean noTitle = title.equals("");
             boolean sameTitle = false;
 
             for (String listTitle : task.getTitles()) {
                 sameTitle = title.equals(listTitle);
+
+                if(sameTitle == true){
+                    break;
+                }
             }
 
             if (!noTitle && !sameTitle) {
                 task.addTitle(title);
                 task.addCheck();
             }
-
             ListPanel listPanel = new ListPanel(task, frame);
 
             showContentPanel(listPanel);
@@ -85,7 +88,7 @@ public class TodoList {
 
     private void initContentPanel() {
         contentPanel = new JPanel();
-        contentPanel.setBackground(Color.green);
+
         frame.add(contentPanel);
     }
 }

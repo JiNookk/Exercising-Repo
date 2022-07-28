@@ -7,24 +7,6 @@ public class Task {
     private List<Boolean> checks = new ArrayList<>();
     private int index;
 
-    public static void main(String[] args){
-        Task task = new Task();
-
-        System.out.println(task.index);
-
-        task.index = 1;
-
-        task.addCheck();
-        task.addCheck();
-        task.addCheck();
-        task.addCheck();
-
-
-
-        System.out.println(task.checks);
-    }
-
-
     public List<String> getTitles() {
         return titles;
     }
@@ -55,7 +37,7 @@ public class Task {
     }
 
     public void removeList() {
-        titles.remove(checks.get(index));
+        titles.remove(titles.get(index));
         checks.remove(checks.get(index));
     }
 }
