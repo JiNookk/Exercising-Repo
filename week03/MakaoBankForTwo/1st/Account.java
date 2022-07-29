@@ -12,11 +12,9 @@ public class Account {
         this.number = number;
     }
 
-
     public long getAmount() {
         return amount;
     }
-
 
     public void transfer(String transferAmount) {
         this.transferAmount.add(transferAmount);

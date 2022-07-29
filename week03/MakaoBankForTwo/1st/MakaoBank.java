@@ -1,13 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MakaoBank {
     private JFrame frame;
     private JPanel contentPanel;
-    private Account accountWook;
-    private Account accountSung;
+
     private JPanel upperContentPanel;
     private JPanel lowerContentPanel;
+    private ArrayList<Account> accounts;
 
     public static void main(String[] args){
         MakaoBank application = new MakaoBank();
@@ -16,8 +17,12 @@ public class MakaoBank {
     }
 
     public void run() {
-        accountWook = new Account(500000, "302-1066-0044-51 농협 오진욱");
-        accountSung = new Account(30000, "302-1043-9642-31 농협 오진성");
+        accounts = new ArrayList<>();
+        Account accountWook = new Account(500000, "302-1066-0044-51 농협 오진욱");
+        accounts.add(accountWook);
+
+        Account accountSung = new Account(30000, "302-1043-9642-31 농협 오진성");
+        accounts.add(accountSung);
 
         frame = new JFrame("MakaoBank");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,11 +39,11 @@ public class MakaoBank {
         contentPanel.setLayout(new GridLayout(2,1));
 
         upperContentPanel = new JPanel();
-//        upperContentPanel.add(new JLabel("HI"));
+        upperContentPanel.setBackground(Color.green);
         contentPanel.add(upperContentPanel);
 
         lowerContentPanel = new JPanel();
-//        lowerContentPanel.add(new JLabel("HI"));
+        lowerContentPanel.setBackground(Color.RED);
         contentPanel.add(lowerContentPanel);
 
         frame.add(contentPanel);
@@ -59,14 +64,12 @@ public class MakaoBank {
     private JButton createAmountButton() {
         JButton button = new JButton("잔액 내역");
         button.addActionListener(event -> {
-            AmountPanel amountPanel1 = new AmountPanel(accountWook);
-
+            AmountPanel amountPanel1 = new AmountPanel(accounts.get(0));
+            amountPanel1.setBackground(Color.gray);
             updatePanel(amountPanel1, upperContentPanel);
 
-//            showContentPanel(upperContentPanel);
-
-            AmountPanel amountPanel2 = new AmountPanel(accountSung);
-
+            AmountPanel amountPanel2 = new AmountPanel(accounts.get(1));
+            amountPanel2.setBackground(Color.BLUE);
             updatePanel(amountPanel2, lowerContentPanel);
 
             showContentPanel(contentPanel);
@@ -99,7 +102,7 @@ public class MakaoBank {
     }
 
     private void updatePanel(JPanel panel, JPanel container) {
-        contentPanel.removeAll();
-        contentPanel.add(panel);
+        container.removeAll();
+        container.add(panel);
     }
 }
