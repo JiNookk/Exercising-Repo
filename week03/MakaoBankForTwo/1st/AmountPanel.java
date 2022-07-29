@@ -9,6 +9,8 @@ public class AmountPanel extends JPanel {
 
         this.setLayout(new GridLayout(3,1));
 
+        this.add(new Label(account.getName() + "님의 계좌"));
+
         this.add(new JLabel(accountNumber()));
 
         this.add(new JLabel(amount()));

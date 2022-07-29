@@ -6,7 +6,7 @@ public class TransferPanel extends JPanel {
 
     TransferPanel(Account account) {
         this.account = account;
-        this.setLayout(new GridLayout(10, 1));
+        this.setLayout(new GridLayout(3, 1));
 
         this.add(new JLabel("송금하기"));
 
