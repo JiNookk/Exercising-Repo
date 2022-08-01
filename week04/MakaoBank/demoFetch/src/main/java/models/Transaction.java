@@ -14,8 +14,30 @@ public class Transaction {
     //TODO : 계좌의 거래 타입 (입금, 출금), 잔액필요
 
     @Override
+    public int hashCode() {
+        return 0;
+    }
+
+    @Override
     public boolean equals(Object other) {
         Transaction otherTransaction = (Transaction) other;
         return Objects.equals(this.type, otherTransaction.type) && this.amount == otherTransaction.amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction(" + type + ": " + amount + ")";
+    }
+
+    public String type() {
+        return type;
+    }
+
+    public Integer amount() {
+        return amount;
+    }
+
+    public int process(int amount) {
+        return this.amount;
     }
 }
