@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class Transaction {
     private final String type;
     private final int amount;
@@ -14,10 +16,6 @@ public class Transaction {
     @Override
     public boolean equals(Object other) {
         Transaction otherTransaction = (Transaction) other;
-        if (this.type.equals(otherTransaction.type) && this.amount == otherTransaction.amount) {
-            return true;
-        }
-        return false;
+        return Objects.equals(this.type, otherTransaction.type) && this.amount == otherTransaction.amount;
     }
-
 }
