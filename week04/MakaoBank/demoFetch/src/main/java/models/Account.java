@@ -12,7 +12,7 @@ public class Account {
 
         for (Transaction transaction : transactions) {
             amount = transaction.process(amount);
-            //account의 amount에 상관 없이 transaction의 amount를 받아와서 account.amount에 저장
+            //account의 amount에 상관 없이 transaction의 amount를 받아와서 account.amount에 저장 -> 입금은 따로 처리
 
             TransactionResult transactionResult =
                     new TransactionResult(transaction, amount);

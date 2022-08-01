@@ -32,4 +32,9 @@ public class TransactionResult {
     public String toString() {
         return "TransactionResult(" + transaction.toString() + ", 잔액: " + amount + ")";
     }
+
+    public String toCsvRow() {
+        return transaction.type() + "," + transaction.amount() + "," + amount;
+//        return String.join(",", values());
+    }
 }

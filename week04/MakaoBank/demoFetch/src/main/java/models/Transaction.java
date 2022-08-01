@@ -38,6 +38,13 @@ public class Transaction {
     }
 
     public int process(int amount) {
+        if (type.equals("입금")){
+            return this.amount + amount;
+        }
+        if (type.equals("출금")){
+            return  amount - this.amount;
+        }
+
         return this.amount;
     }
 }
